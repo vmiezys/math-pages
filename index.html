@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Math Playground</title>
+
+  <!-- KaTeX -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+          onload="renderMathInElement(document.body);"></script>
+
+  <!-- MathJax -->
+  <script>
+    window.MathJax = {
+      tex: {
+        inlineMath: [['$', '$'], ['\\(', '\\)']]
+      }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async></script>
+
+  <!-- JSXGraph -->
+  <script src="https://cdn.jsdelivr.net/npm/jsxgraph@1.6.1/distrib/jsxgraphcore.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jsxgraph@1.6.1/distrib/jsxgraph.css">
+
+  <style>
+    .jxgbox {
+      width: 400px;
+      height: 300px;
+      margin-bottom: 20px;
+      border: 1px solid #aaa;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Math Playground</h1>
+
+  <h2>KaTeX Example</h2>
+  <p>Here is an inline equation rendered with KaTeX: \( \int_0^1 x^2 \, dx = \frac{1}{3} \)</p>
+
+  <h2>MathJax Example</h2>
+  <p>Here is the same equation rendered with MathJax: $ \int_0^1 x^2 \, dx = \frac{1}{3} $</p>
+
+  <h2>JSXGraph Examples</h2>
+
+  <!-- Function Plot -->
+  <h3>1. Function Plot</h3>
+  <div id="jxg1" class="jxgbox"></div>
+  <script>
+    const board1 = JXG.JSXGraph.initBoard('jxg1', {
+      boundingbox: [-5, 5, 5, -5],
+      axis: true
+    });
+    board1.create('functiongraph', [x => Math.sin(x), -5, 5]);
+  </script>
+
+  <!-- Point and Line -->
+  <h3>2. Point and Line</h3>
+  <div id="jxg2" class="jxgbox"></div>
+  <script>
+    const board2 = JXG.JSXGraph.initBoard('jxg2', {
+      boundingbox: [-5, 5, 5, -5],
+      axis: true
+    });
+    const A = board2.create('point', [1, 1], { name: 'A', size: 3 });
+    const B = board2.create('point', [3, 2], { name: 'B', size: 3 });
+    board2.create('line', [A, B], { straightFirst: false, straightLast: false });
+  </script>
+
+  <!-- Circle -->
+  <h3>3. Circle</h3>
+  <div id="jxg3" class="jxgbox"></div>
+  <script>
+    const board3 = JXG.JSXGraph.initBoard('jxg3', {
+      boundingbox: [-5, 5, 5, -5],
+      axis: true
+    });
+    const center = board3.create('point', [0, 0], { name: 'Center', size: 3 });
+    const pointOnCircle = board3.create('point', [2, 0], { name: 'P', size: 3 });
+    board3.create('circle', [center, pointOnCircle]);
+  </script>
+
+</body>
+</html>
+
